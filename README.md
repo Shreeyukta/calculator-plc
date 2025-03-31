@@ -1,7 +1,11 @@
 # Prefix Calculator
 <br>
-- By Shreeyukta Pradhanang 
-- st125168
+
+### Author  
+**By Shreeyukta Pradhanang**  
+**Student ID: st125168**
+
+<br>
 
 This is a GUI-based prefix calculator built using **Python 3.9** and **PyQt6** for the **Programming Language and Compiler course at AIT**. It supports prefix arithmetic expressions using `+` and `*`, evaluates the result, and shows the equivalent infix notation.
 
