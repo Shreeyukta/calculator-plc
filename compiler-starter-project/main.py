@@ -4,7 +4,7 @@ from PyQt6.QtWidgets import QApplication
 from PyQt6.QtWidgets import QMainWindow, QLineEdit, QPushButton, QLCDNumber
 
 from components.lexica import MyLexer
-from components.parsers import MyParser
+from components.parsers import PrefixParser
 from components.memory import Memory
 
 class MainWindow(QMainWindow):
@@ -23,8 +23,12 @@ class MainWindow(QMainWindow):
     button_plus:QPushButton
     button_multiply:QPushButton
     button_equal:QPushButton
+    button_clear:QPushButton
+
     input_text:QLineEdit
+
     output_lcd:QLCDNumber
+    output_infix: QLCDNumber
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -43,30 +47,44 @@ class MainWindow(QMainWindow):
 
         self.button_plus.clicked.connect(lambda: self.push("+"))
         self.button_multiply.clicked.connect(lambda: self.push("*"))
+
+        self.button_clear.clicked.connect(lambda: self.clear_all())
+
         self.button_equal.clicked.connect(self.push_equal)
 
-    def push_1(self):
-        current_text:str = self.input_text.text()
-        self.input_text.setText(f"{current_text}1")
+        self.output_infix.setReadOnly(True)
     
     def push(self, text:str):
         current_text:str = self.input_text.text()
         self.input_text.setText(f"{current_text}{text}")
+
+    def clear_all(self):
+        self.input_text.clear()
+        self.output_infix.clear()
+        self.output_lcd.display(0)
     
     def push_equal(self):
         print("Calculate")
         lexer = MyLexer()
-        parser = MyParser()
+        prefixparser = PrefixParser()
         memory = Memory()
+        # parser = PrefixParser()
         input_text = self.input_text.text()
-        result = parser.parse(lexer.tokenize(input_text))
+        result = prefixparser.parse(lexer.tokenize(input_text))
         print(type(result))
+
         self.output_lcd.display(result)
+        self.output_infix.setText(prefixparser.get_infix())
         # for debug
         print(memory)
+    
+
+
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
+    with open("style.qss", "r") as file:
+        app.setStyleSheet(file.read())
     window = MainWindow()
     window.show()
     app.exec()

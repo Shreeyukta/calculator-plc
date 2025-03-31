@@ -1,0 +1,59 @@
+QMainWindow {
+    background-color: #333;
+}
+
+QLineEdit {
+    background-color: #222;
+    color: #fff;
+    font-size: 20px;
+    border: none;
+    padding: 10px;
+    border-radius: 6px;
+    qproperty-alignment: 'AlignRight | AlignVCenter';
+}
+
+QLCDNumber {
+    background-color: #f2f2f2;   /* light grey like the display */
+    border: 2px solid #999;
+    border-radius: 10px;
+    color: #333;                 /* dark grey digits */
+    padding: 5px;
+}
+
+QPushButton {
+    background-color: #444;
+    color: white;
+    font-size: 18px;
+    padding: 12px;
+    border: none;
+    border-radius: 6px;
+}
+
+QPushButton:hover {
+    background-color: #555;
+}
+
+QPushButton:pressed {
+    background-color: #666;
+}
+
+QPushButton#button_equal {
+    background-color: #4CAF50;
+    color: white;
+    font-weight: bold;
+}
+
+QPushButton#button_equal:hover {
+    background-color: #45a049;
+}
+
+
+QPushButton#button_clear {
+    background-color: #f44336;
+    color: white;
+    font-weight: bold;
+}
+
+QPushButton#button_clear:hover {
+    background-color: #e53935;
+}
